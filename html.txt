@@ -1,0 +1,270 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techowizz - Product Listings</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c; /* Dark background */
+            color: #e2e8f0; /* Light text for dark background */
+        }
+        /* Custom scrollbar for the sidebar */
+        .sidebar-scroll {
+            max-height: calc(100vh - 80px); /* Adjust based on header height */
+            overflow-y: auto;
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .sidebar-scroll::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Header Section -->
+    <header class="bg-gray-800 shadow-lg py-4 px-6 md:px-8 flex flex-col md:flex-row items-center justify-between sticky top-0 z-10 space-y-4 md:space-y-0">
+        <div class="flex items-center space-x-4 w-full md:w-auto justify-between md:justify-start">
+            <!-- Techowizz name with gloss green color -->
+            <h1 class="text-2xl font-bold text-emerald-400">Techowizz</h1>
+            <!-- Hamburger Icon for mobile, hidden on larger screens -->
+            <button class="text-gray-400 hover:text-white focus:outline-none md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+
+        <!-- Search within results - Moved to Header -->
+        <div class="w-full md:w-1/2 lg:w-1/3 relative">
+            <label for="search-results" class="sr-only">Search</label>
+            <input type="text" id="search-results" placeholder="Search" class="w-full pl-4 pr-10 py-2 border border-gray-700 bg-gray-700 text-gray-200 rounded-md focus:ring-blue-500 focus:border-blue-500">
+            <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-200">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </button>
+        </div>
+
+        <div class="flex items-center space-x-4 hidden md:flex">
+            <!-- Sort by dropdown -->
+            <label for="sort-by" class="sr-only">Sort by</label>
+            <select id="sort-by" class="bg-gray-700 text-gray-200 py-1.5 px-3 rounded-md border border-gray-600 focus:ring-blue-500 focus:border-blue-500">
+                <option value="default">Sort by Default</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+            </select>
+            <!-- Removed the "Next" button -->
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="flex flex-1 flex-col md:flex-row p-4 md:p-8 space-y-6 md:space-y-0 md:space-x-6">
+
+        <!-- Left Sidebar - Refine Section -->
+        <aside class="w-full md:w-1/4 bg-gray-900 rounded-lg shadow-md p-6 sidebar-scroll">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-semibold text-white">Refine</h2>
+                <button class="text-blue-400 text-sm font-medium hover:underline">Clear all</button>
+            </div>
+
+            <!-- New / Secondhand Filter -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium text-white mb-3">New / Secondhand</h3>
+                <div class="space-y-2">
+                    <label class="flex items-center text-gray-300">
+                        <input type="radio" name="condition" value="all" class="form-radio h-4 w-4 text-blue-500 rounded-full" checked>
+                        <span class="ml-2">All <span class="text-gray-400">(39)</span></span>
+                    </label>
+                    <label class="flex items-center text-gray-300">
+                        <input type="radio" name="condition" value="new" class="form-radio h-4 w-4 text-blue-500 rounded-full">
+                        <span class="ml-2">New <span class="text-gray-400">(198)</span></span>
+                    </label>
+                    <label class="flex items-center text-gray-300">
+                        <input type="radio" name="condition" value="secondhand" class="form-radio h-4 w-4 text-blue-500 rounded-full">
+                        <span class="ml-2">Secondhand <span class="text-gray-400">(0)</span></span>
+                    </label>
+                    <label class="flex items-center text-gray-300">
+                        <input type="radio" name="condition" value="refurbished" class="form-radio h-4 w-4 text-blue-500 rounded-full">
+                        <span class="ml-2">Refurbished <span class="text-gray-400">(0)</span></span>
+                    </label>
+                </div>
+            </div>
+            <!-- Add more filter categories here if needed -->
+        </aside>
+
+        <!-- Right Main Content - Product Grid -->
+        <main id="product-grid" class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+
+            <!-- Product Card 1 -->
+            <a href="product-detail-page" class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative" data-price="3999">
+                <div class="absolute top-2 right-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded-full">67% OFF</div>
+                <img src="https://img.bobshop.co.za/f_auto,q_auto:eco,c_fit,w_800,h_800,d_notfound.png/user/3054884/WhatsApp_Image_2025-06-21_at_19.21.47_3fe15a6a_3RcNFeBpD.jpg" alt="Lenovo V15 Business Laptop" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold text-white mb-1">Lenovo V15 Business Laptop</h3>
+                    <p class="text-sm text-gray-400 mb-3">10th Gen i5, 8GB Ram, 256GB SSD, UHD Graphic...</p>
+                    <div class="flex items-center mb-3">
+                        <span class="bg-blue-700 text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded-full">Secondhand</span>
+                    </div>
+                    <div class="flex items-baseline mb-4">
+                        <span class="text-2xl font-bold text-white mr-2">R3,999.00</span>
+                        <span class="text-sm text-gray-500 line-through">R12,000.00</span>
+                    </div>
+                    <button class="w-full bg-indigo-600 text-white py-2 rounded-md font-semibold hover:bg-indigo-700 transition duration-300 flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        <span>Add to cart</span>
+                    </button>
+                </div>
+            </a>
+
+            <!-- Product Card 2 -->
+            <a href="product-detail-page" class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative" data-price="4499">
+                <div class="absolute top-2 right-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded-full">70% OFF</div>
+                <img src="https://placehold.co/400x300/2D3748/A0AEC0?text=Laptop+2" alt="Lenovo Thinkpad E15" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold text-white mb-1">Lenovo Thinkpad E15 | 10th Gen i5, 8GB RAM, 512GB SSD, UHD Graphics, FHD</h3>
+                    <p class="text-sm text-gray-400 mb-3">10th Gen i5, 8GB RAM, 512GB SSD, UHD Graphic...</p>
+                    <div class="flex items-center mb-3">
+                        <span class="bg-blue-700 text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded-full">Secondhand</span>
+                    </div>
+                    <div class="flex items-baseline mb-4">
+                        <span class="text-2xl font-bold text-white mr-2">R4,499.00</span>
+                        <span class="text-sm text-gray-500 line-through">R15,000.00</span>
+                    </div>
+                    <button class="w-full bg-indigo-600 text-white py-2 rounded-md font-semibold hover:bg-indigo-700 transition duration-300 flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        <span>Add to cart</span>
+                    </button>
+                </div>
+            </a>
+
+            <!-- Product Card 3 -->
+            <a href="product-detail-page" class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative" data-price="7999">
+                <div class="absolute top-2 right-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded-full">60% OFF</div>
+                <img src="https://placehold.co/400x300/2D3748/A0AEC0?text=Laptop+3" alt="ASUS Zenbook Ultrabook" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold text-white mb-1">ASUS Zenbook Ultrabook | 11th Gen i7, 16GB RAM, 512GB SSD, Full HD, Intel Iri...</h3>
+                    <p class="text-sm text-gray-400 mb-3">11th Gen i7, 16GB RAM, 512GB SSD, Full HD, Intel Iri...</p>
+                    <div class="flex items-center mb-3">
+                        <span class="bg-purple-700 text-purple-200 text-xs font-medium px-2.5 py-0.5 rounded-full">New</span>
+                    </div>
+                    <div class="flex items-baseline mb-4">
+                        <span class="text-2xl font-bold text-white mr-2">R7,999.00</span>
+                        <span class="text-sm text-gray-500 line-through">R20,000.00</span>
+                    </div>
+                    <button class="w-full bg-indigo-600 text-white py-2 rounded-md font-semibold hover:bg-indigo-700 transition duration-300 flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        <span>Add to cart</span>
+                    </button>
+                </div>
+            </a>
+
+            <!-- Product Card 4 -->
+            <a href="product-detail-page" class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative" data-price="4499">
+                <img src="https://placehold.co/400x300/2D3748/A0AEC0?text=Laptop+4" alt="Lenovo Thinkpad E15" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold text-white mb-1">Lenovo Thinkpad E15 | 10th Gen i5, 8GB RAM, 512GB SSD, UHD Graphics, FHD</h3>
+                    <p class="text-sm text-gray-400 mb-3">10th Gen i5, 8GB RAM, 512GB SSD, UHD Graphics, FHD</p>
+                    <div class="flex items-center mb-3">
+                        <span class="bg-blue-700 text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded-full">Secondhand</span>
+                    </div>
+                    <div class="flex items-baseline mb-4">
+                        <span class="text-2xl font-bold text-white mr-2">R4,499.00</span>
+                        <span class="text-sm text-gray-500">No bids</span>
+                    </div>
+                    <p class="text-sm text-gray-500 mb-4">Ends 4 Jul 25 15:00</p>
+                    <button class="w-full bg-indigo-600 text-white py-2 rounded-md font-semibold hover:bg-indigo-700 transition duration-300 flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        <span>Add to cart</span>
+                    </button>
+                </div>
+            </a>
+
+            <!-- Product Card 5 -->
+            <a href="product-detail-page" class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative" data-price="4999">
+                <img src="https://placehold.co/400x300/2D3748/A0AEC0?text=Laptop+5" alt="Lenovo ThinkPad X390" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold text-white mb-1">Lenovo ThinkPad X390 | CORE i5, 8GB RAM, 256GB SSD</h3>
+                    <p class="text-sm text-gray-400 mb-3">CORE i5, 8GB RAM, 256GB SSD</p>
+                    <div class="flex items-center mb-3">
+                        <span class="bg-blue-700 text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded-full">Secondhand</span>
+                    </div>
+                    <div class="flex items-baseline mb-4">
+                        <span class="text-2xl font-bold text-white mr-2">R4,999.00</span>
+                        <span class="text-sm text-gray-500">No bids</span>
+                    </div>
+                    <p class="text-sm text-gray-500 mb-4">Ends 4 Jul 25 15:00</p>
+                    <button class="w-full bg-indigo-600 text-white py-2 rounded-md font-semibold hover:bg-indigo-700 transition duration-300 flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        <span>Add to cart</span>
+                    </button>
+                </div>
+            </a>
+
+            <!-- Product Card 6 -->
+            <a href="product-detail-page" class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative" data-price="3999">
+                <img src="https://placehold.co/400x300/2D3748/A0AEC0?text=Laptop+6" alt="Lenovo V15 Business Laptop" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold text-white mb-1">Lenovo V15 Business Laptop | 10th Gen i5, 8GB Ram, 256GB SSD, UHD Graphic...</h3>
+                    <p class="text-sm text-gray-400 mb-3">10th Gen i5, 8GB Ram, 256GB SSD, UHD Graphic...</p>
+                    <div class="flex items-center mb-3">
+                        <span class="bg-blue-700 text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded-full">Secondhand</span>
+                    </div>
+                    <div class="flex items-baseline mb-4">
+                        <span class="text-2xl font-bold text-white mr-2">R3,999.00</span>
+                        <span class="text-sm text-gray-500">No bids</span>
+                    </div>
+                    <button class="w-full bg-indigo-600 text-white py-2 rounded-md font-semibold hover:bg-indigo-700 transition duration-300 flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        <span>Add to cart</span>
+                    </button>
+                </div>
+            </a>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sortBySelect = document.getElementById('sort-by');
+            const productGrid = document.getElementById('product-grid');
+            let productCards = Array.from(document.querySelectorAll('.product-card')); // Convert NodeList to Array
+
+            // Store initial order
+            const initialOrder = Array.from(productCards);
+
+            sortBySelect.addEventListener('change', (event) => {
+                const sortValue = event.target.value;
+
+                if (sortValue === 'price-asc') {
+                    // Sort by price: Low to High
+                    productCards.sort((a, b) => {
+                        const priceA = parseFloat(a.dataset.price);
+                        const priceB = parseFloat(b.dataset.price);
+                        return priceA - priceB;
+                    });
+                } else if (sortValue === 'price-desc') {
+                    // Sort by price: High to Low
+                    productCards.sort((a, b) => {
+                        const priceA = parseFloat(a.dataset.price);
+                        const priceB = parseFloat(b.dataset.price);
+                        return priceB - priceA;
+                    });
+                } else {
+                    // Default sort (restore initial order)
+                    productCards = Array.from(initialOrder);
+                }
+
+                // Clear current grid and append sorted cards
+                productGrid.innerHTML = '';
+                productCards.forEach(card => {
+                    productGrid.appendChild(card);
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
