@@ -76,19 +76,19 @@
                 <div class="space-y-2">
                     <label class="flex items-center text-gray-300">
                         <input type="radio" name="condition" value="all" class="form-radio h-4 w-4 text-blue-500 rounded-full" checked>
-                        <span class="ml-2">All <span class="text-gray-400">(39)</span></span>
+                        <span class="ml-2">All <span class="text-gray-400" id="count-all">(0)</span></span>
                     </label>
                     <label class="flex items-center text-gray-300">
                         <input type="radio" name="condition" value="new" class="form-radio h-4 w-4 text-blue-500 rounded-full">
-                        <span class="ml-2">New <span class="text-gray-400">(198)</span></span>
+                        <span class="ml-2">New <span class="text-gray-400" id="count-new">(0)</span></span>
                     </label>
                     <label class="flex items-center text-gray-300">
                         <input type="radio" name="condition" value="secondhand" class="form-radio h-4 w-4 text-blue-500 rounded-full">
-                        <span class="ml-2">Secondhand <span class="text-gray-400">(0)</span></span>
+                        <span class="ml-2">Secondhand <span class="text-gray-400" id="count-secondhand">(0)</span></span>
                     </label>
                     <label class="flex items-center text-gray-300">
                         <input type="radio" name="condition" value="refurbished" class="form-radio h-4 w-4 text-blue-500 rounded-full">
-                        <span class="ml-2">Refurbished <span class="text-gray-400">(0)</span></span>
+                        <span class="ml-2">Refurbished <span class="text-gray-400" id="count-refurbished">(0)</span></span>
                     </label>
                 </div>
             </div>
@@ -106,7 +106,7 @@
                     <h3 class="text-lg font-semibold text-white mb-1">Lenovo V15 Business Laptop</h3>
                     <p class="text-sm text-gray-400 mb-3">10th Gen i5, 8GB Ram, 256GB SSD, UHD Graphic...</p>
                     <div class="flex items-center mb-3">
-                        <span class="bg-blue-700 text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded-full">Secondhand</span>
+                        <span class="bg-blue-700 text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded-full product-condition">Secondhand</span>
                     </div>
                     <div class="flex items-baseline mb-4">
                         <span class="text-2xl font-bold text-white mr-2">R3,999.00</span>
@@ -127,7 +127,7 @@
                     <h3 class="text-lg font-semibold text-white mb-1">Lenovo Thinkpad E15 | 10th Gen i5, 8GB RAM, 512GB SSD, UHD Graphics, FHD</h3>
                     <p class="text-sm text-gray-400 mb-3">10th Gen i5, 8GB RAM, 512GB SSD, UHD Graphic...</p>
                     <div class="flex items-center mb-3">
-                        <span class="bg-blue-700 text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded-full">Secondhand</span>
+                        <span class="bg-blue-700 text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded-full product-condition">Secondhand</span>
                     </div>
                     <div class="flex items-baseline mb-4">
                         <span class="text-2xl font-bold text-white mr-2">R4,499.00</span>
@@ -148,7 +148,7 @@
                     <h3 class="text-lg font-semibold text-white mb-1">ASUS Zenbook Ultrabook | 11th Gen i7, 16GB RAM, 512GB SSD, Full HD, Intel Iri...</h3>
                     <p class="text-sm text-gray-400 mb-3">11th Gen i7, 16GB RAM, 512GB SSD, Full HD, Intel Iri...</p>
                     <div class="flex items-center mb-3">
-                        <span class="bg-purple-700 text-purple-200 text-xs font-medium px-2.5 py-0.5 rounded-full">New</span>
+                        <span class="bg-purple-700 text-purple-200 text-xs font-medium px-2.5 py-0.5 rounded-full product-condition">New</span>
                     </div>
                     <div class="flex items-baseline mb-4">
                         <span class="text-2xl font-bold text-white mr-2">R7,999.00</span>
@@ -168,7 +168,7 @@
                     <h3 class="text-lg font-semibold text-white mb-1">Lenovo Thinkpad E15 | 10th Gen i5, 8GB RAM, 512GB SSD, UHD Graphics, FHD</h3>
                     <p class="text-sm text-gray-400 mb-3">10th Gen i5, 8GB RAM, 512GB SSD, UHD Graphics, FHD</p>
                     <div class="flex items-center mb-3">
-                        <span class="bg-blue-700 text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded-full">Secondhand</span>
+                        <span class="bg-blue-700 text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded-full product-condition">Secondhand</span>
                     </div>
                     <div class="flex items-baseline mb-4">
                         <span class="text-2xl font-bold text-white mr-2">R4,499.00</span>
@@ -189,7 +189,7 @@
                     <h3 class="text-lg font-semibold text-white mb-1">Lenovo ThinkPad X390 | CORE i5, 8GB RAM, 256GB SSD</h3>
                     <p class="text-sm text-gray-400 mb-3">CORE i5, 8GB RAM, 256GB SSD</p>
                     <div class="flex items-center mb-3">
-                        <span class="bg-blue-700 text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded-full">Secondhand</span>
+                        <span class="bg-blue-700 text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded-full product-condition">Secondhand</span>
                     </div>
                     <div class="flex items-baseline mb-4">
                         <span class="text-2xl font-bold text-white mr-2">R4,999.00</span>
@@ -210,7 +210,7 @@
                     <h3 class="text-lg font-semibold text-white mb-1">Lenovo V15 Business Laptop | 10th Gen i5, 8GB Ram, 256GB SSD, UHD Graphic...</h3>
                     <p class="text-sm text-gray-400 mb-3">10th Gen i5, 8GB Ram, 256GB SSD, UHD Graphic...</p>
                     <div class="flex items-center mb-3">
-                        <span class="bg-blue-700 text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded-full">Secondhand</span>
+                        <span class="bg-blue-700 text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded-full product-condition">Secondhand</span>
                     </div>
                     <div class="flex items-baseline mb-4">
                         <span class="text-2xl font-bold text-white mr-2">R3,999.00</span>
@@ -234,6 +234,36 @@
 
             // Store initial order
             const initialOrder = Array.from(productCards);
+
+            // Function to update counts
+            function updateRefineCounts() {
+                let newCount = 0;
+                let secondhandCount = 0;
+                let refurbishedCount = 0;
+                const allCount = productCards.length;
+
+                productCards.forEach(card => {
+                    const conditionSpan = card.querySelector('.product-condition');
+                    if (conditionSpan) {
+                        const condition = conditionSpan.textContent.trim();
+                        if (condition === 'New') {
+                            newCount++;
+                        } else if (condition === 'Secondhand') {
+                            secondhandCount++;
+                        } else if (condition === 'Refurbished') {
+                            refurbishedCount++;
+                        }
+                    }
+                });
+
+                document.getElementById('count-all').textContent = `(${allCount})`;
+                document.getElementById('count-new').textContent = `(${newCount})`;
+                document.getElementById('count-secondhand').textContent = `(${secondhandCount})`;
+                document.getElementById('count-refurbished').textContent = `(${refurbishedCount})`;
+            }
+
+            // Initial call to update counts when the page loads
+            updateRefineCounts();
 
             sortBySelect.addEventListener('change', (event) => {
                 const sortValue = event.target.value;
@@ -262,6 +292,9 @@
                 productCards.forEach(card => {
                     productGrid.appendChild(card);
                 });
+
+                // Re-calculate and update counts after sorting (though sorting doesn't change counts, good practice)
+                updateRefineCounts();
             });
         });
     </script>
