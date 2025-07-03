@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Techowizz - Product Listings</title>
+    <title>Techowizz</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Inter Font -->
@@ -24,6 +24,14 @@
         .sidebar-scroll::-webkit-scrollbar {
             display: none; /* Chrome, Safari, Opera */
         }
+        /* Hide pages by default */
+        .page-content {
+            display: none;
+        }
+        /* Ensure header is always visible */
+        header {
+            width: 100%;
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
@@ -32,14 +40,14 @@
     <header class="bg-gray-800 shadow-lg py-4 px-6 md:px-8 flex flex-col md:flex-row items-center justify-between sticky top-0 z-10 space-y-4 md:space-y-0">
         <div class="flex items-center space-x-4 w-full md:w-auto justify-between md:justify-start">
             <!-- Techowizz name with gloss green color -->
-            <h1 class="text-2xl font-bold text-emerald-400">Techowizz</h1>
+            <h1 class="text-2xl font-bold text-emerald-400 cursor-pointer" onclick="showPage('product-listing-content')">Techowizz</h1>
             <!-- Hamburger Icon for mobile, hidden on larger screens -->
             <button class="text-gray-400 hover:text-white focus:outline-none md:hidden">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
         </div>
 
-        <!-- Search within results - Moved to Header -->
+        <!-- Search within results -->
         <div class="w-full md:w-1/2 lg:w-1/3 relative">
             <label for="search-results" class="sr-only">Search</label>
             <input type="text" id="search-results" placeholder="Search" class="w-full pl-4 pr-10 py-2 border border-gray-700 bg-gray-700 text-gray-200 rounded-md focus:ring-blue-500 focus:border-blue-500">
@@ -57,13 +65,14 @@
                 <option value="price-desc">Price: High to Low</option>
             </select>
             <!-- Login Button -->
-            <a href="login.html" class="bg-blue-600 text-white py-1.5 px-3 rounded-md font-semibold hover:bg-blue-700 transition duration-300">Login</a>
+            <button onclick="showPage('login-page-content')" class="bg-blue-600 text-white py-1.5 px-3 rounded-md font-semibold hover:bg-blue-700 transition duration-300">Login</button>
         </div>
     </header>
 
-    <!-- Main Content Area -->
-    <div class="flex flex-1 flex-col md:flex-row p-4 md:p-8 space-y-6 md:space-y-0 md:space-x-6">
+    <!-- Main Content Area - All pages are now within this body -->
 
+    <!-- Product Listing Page Content -->
+    <div id="product-listing-content" class="page-content flex flex-1 flex-col md:flex-row p-4 md:p-8 space-y-6 md:space-y-0 md:space-x-6">
         <!-- Left Sidebar - Refine Section -->
         <aside class="w-full md:w-1/4 bg-gray-900 rounded-lg shadow-md p-6 sidebar-scroll">
             <div class="flex items-center justify-between mb-6">
@@ -100,7 +109,7 @@
         <main id="product-grid" class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
 
             <!-- Product Card 1 -->
-            <a href="product-detail-page.html" class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative" data-price="3999">
+            <div class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative cursor-pointer" data-price="3999" onclick="showPage('product-detail-content')">
                 <div class="absolute top-2 right-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded-full">67% OFF</div>
                 <img src="https://img.bobshop.co.za/f_auto,q_auto:eco,c_fit,w_800,h_800,d_notfound.png/user/3054884/WhatsApp_Image_2025-06-21_at_19.21.47_3fe15a6a_3RcNFeBpD.jpg" alt="Lenovo V15 Business Laptop" class="w-full h-48 object-cover">
                 <div class="p-4">
@@ -118,10 +127,10 @@
                         <span>Add to cart</span>
                     </button>
                 </div>
-            </a>
+            </div>
 
             <!-- Product Card 2 -->
-            <a href="product-detail-page.html" class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative" data-price="4499">
+            <div class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative cursor-pointer" data-price="4499" onclick="showPage('product-detail-content')">
                 <div class="absolute top-2 right-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded-full">70% OFF</div>
                 <img src="https://placehold.co/400x300/2D3748/A0AEC0?text=Laptop+2" alt="Lenovo Thinkpad E15" class="w-full h-48 object-cover">
                 <div class="p-4">
@@ -139,10 +148,10 @@
                         <span>Add to cart</span>
                     </button>
                 </div>
-            </a>
+            </div>
 
             <!-- Product Card 3 -->
-            <a href="product-detail-page.html" class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative" data-price="7999">
+            <div class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative cursor-pointer" data-price="7999" onclick="showPage('product-detail-content')">
                 <div class="absolute top-2 right-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded-full">60% OFF</div>
                 <img src="https://placehold.co/400x300/2D3748/A0AEC0?text=Laptop+3" alt="ASUS Zenbook Ultrabook" class="w-full h-48 object-cover">
                 <div class="p-4">
@@ -160,10 +169,10 @@
                         <span>Add to cart</span>
                     </button>
                 </div>
-            </a>
+            </div>
 
             <!-- Product Card 4 -->
-            <a href="product-detail-page.html" class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative" data-price="4499">
+            <div class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative cursor-pointer" data-price="4499" onclick="showPage('product-detail-content')">
                 <img src="https://placehold.co/400x300/2D3748/A0AEC0?text=Laptop+4" alt="Lenovo Thinkpad E15" class="w-full h-48 object-cover">
                 <div class="p-4">
                     <h3 class="text-lg font-semibold text-white mb-1">Lenovo Thinkpad E15 | 10th Gen i5, 8GB RAM, 512GB SSD, UHD Graphics, FHD</h3>
@@ -181,10 +190,10 @@
                         <span>Add to cart</span>
                     </button>
                 </div>
-            </a>
+            </div>
 
             <!-- Product Card 5 -->
-            <a href="product-detail-page.html" class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative" data-price="4999">
+            <div class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative cursor-pointer" data-price="4999" onclick="showPage('product-detail-content')">
                 <img src="https://placehold.co/400x300/2D3748/A0AEC0?text=Laptop+5" alt="Lenovo ThinkPad X390" class="w-full h-48 object-cover">
                 <div class="p-4">
                     <h3 class="text-lg font-semibold text-white mb-1">Lenovo ThinkPad X390 | CORE i5, 8GB RAM, 256GB SSD</h3>
@@ -202,10 +211,10 @@
                         <span>Add to cart</span>
                     </button>
                 </div>
-            </a>
+            </div>
 
             <!-- Product Card 6 -->
-            <a href="product-detail-page.html" class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative" data-price="3999">
+            <div class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative cursor-pointer" data-price="3999" onclick="showPage('product-detail-content')">
                 <img src="https://placehold.co/400x300/2D3748/A0AEC0?text=Laptop+6" alt="Lenovo V15 Business Laptop" class="w-full h-48 object-cover">
                 <div class="p-4">
                     <h3 class="text-lg font-semibold text-white mb-1">Lenovo V15 Business Laptop | 10th Gen i5, 8GB Ram, 256GB SSD, UHD Graphic...</h3>
@@ -222,21 +231,264 @@
                         <span>Add to cart</span>
                     </button>
                 </div>
-            </a>
+            </div>
 
         </main>
     </div>
 
+    <!-- Product Detail Page Content -->
+    <div id="product-detail-content" class="page-content flex-1 p-4 md:p-8 max-w-7xl mx-auto">
+        <!-- Back Button -->
+        <button onclick="showPage('product-listing-content')" class="flex items-center text-blue-400 hover:underline mb-6 focus:outline-none">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Back to Listings
+        </button>
+
+        <div class="bg-gray-900 rounded-lg shadow-md p-6 mb-6 flex flex-col lg:flex-row lg:space-x-8">
+            <!-- Product Images Section -->
+            <div class="w-full lg:w-1/2 flex flex-col items-center">
+                <div class="relative w-full max-w-md mb-4">
+                    <img src="https://img.bobshop.co.za/f_auto,q_auto:eco,c_fit,w_800,h_800,d_notfound.png/user/3054884/WhatsApp_Image_2025-06-21_at_19.21.47_3fe15a6a_3RcNFeBpD.jpg" alt="Main Product Image" class="w-full rounded-lg shadow-lg object-cover">
+                    <!-- Navigation arrows (optional, for image gallery) -->
+                    <button class="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-700 bg-opacity-75 text-white p-2 rounded-full hover:bg-opacity-100 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <button class="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-700 bg-opacity-75 text-white p-2 rounded-full hover:bg-opacity-100 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+                <div class="flex space-x-2">
+                    <!-- Thumbnail images -->
+                    <img src="https://img.bobshop.co.za/f_auto,q_auto:eco,c_fit,w_800,h_800,d_notfound.png/user/3054884/WhatsApp_Image_2025-06-21_at_19.21.47_3fe15a6a_3RcNFeBpD.jpg" alt="Thumbnail 1" class="w-20 h-20 object-cover rounded-md border-2 border-blue-500 cursor-pointer">
+                    <img src="https://placehold.co/80x80/2D3748/A0AEC0?text=Thumb2" alt="Thumbnail 2" class="w-20 h-20 object-cover rounded-md border-2 border-transparent hover:border-blue-500 cursor-pointer">
+                    <img src="https://placehold.co/80x80/2D3748/A0AEC0?text=Thumb3" alt="Thumbnail 3" class="w-20 h-20 object-cover rounded-md border-2 border-transparent hover:border-blue-500 cursor-pointer">
+                </div>
+            </div>
+
+            <!-- Product Info Section -->
+            <div class="w-full lg:w-1/2 mt-8 lg:mt-0">
+                <h1 class="text-3xl font-bold text-white mb-2">Lenovo V15 Business Laptop | 10th Gen i5, 8GB Ram, 256GB SSD, UHD Graphics, FHD | bargain</h1>
+                <div class="flex items-center space-x-2 mb-4">
+                    <span class="bg-blue-700 text-blue-200 text-sm font-medium px-2.5 py-0.5 rounded-full">Secondhand</span>
+                    <span class="bg-green-700 text-green-200 text-sm font-medium px-2.5 py-0.5 rounded-full">available</span>
+                </div>
+
+                <p class="text-gray-400 text-sm mb-1">Indicative market price: <span class="line-through">R12,000.00</span></p>
+                <div class="flex items-baseline mb-6">
+                    <span class="text-4xl font-bold text-white mr-2">R3,999.00</span>
+                    <span class="text-lg text-gray-400">minimum increment</span>
+                </div>
+
+                <button class="w-full bg-orange-500 text-white py-3 rounded-md font-semibold text-lg hover:bg-orange-600 transition duration-300 mb-6">Buy Now</button>
+
+                <!-- Shipping Information -->
+                <div class="bg-gray-800 rounded-lg p-4 mb-6">
+                    <h3 class="text-lg font-semibold text-white mb-2">Shipping</h3>
+                    <div class="flex items-center text-gray-300 mb-1">
+                        <svg class="w-5 h-5 mr-2 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zM21 12c0 4.418-9 10-9 10S3 16.418 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                        <span>Standard courier shipping from <span class="font-bold">R35.00</span></span>
+                    </div>
+                    <div class="flex items-center text-gray-300">
+                        <svg class="w-5 h-5 mr-2 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>Ready to ship in <span class="font-bold">4 business days</span></span>
+                    </div>
+                </div>
+
+                <!-- Seller Information -->
+                <div class="bg-gray-800 rounded-lg p-4 mb-6">
+                    <h3 class="text-lg font-semibold text-white mb-2">Seller</h3>
+                    <div class="flex items-center text-gray-300">
+                        <span class="font-bold text-blue-400 mr-2">TechoWizz</span>
+                        <svg class="w-4 h-4 text-yellow-500 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.683-1.539 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.565-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z"></path></svg>
+                        <span class="text-gray-400">4560</span>
+                    </div>
+                    <button class="text-blue-400 hover:underline mt-3 flex items-center">
+                        <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-9 10-9 10S3 16.418 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                        Ask the seller a question
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Details Table -->
+        <div class="bg-gray-900 rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-semibold text-white mb-4">Product details</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-gray-300">
+                    <tbody>
+                        <tr class="border-b border-gray-700">
+                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Condition</td>
+                            <td class="py-2">Secondhand</td>
+                        </tr>
+                        <tr class="border-b border-gray-700">
+                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Location</td>
+                            <td class="py-2">South Africa</td>
+                        </tr>
+                        <tr class="border-b border-gray-700">
+                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Screen Size</td>
+                            <td class="py-2">15.6</td>
+                        </tr>
+                        <tr class="border-b border-gray-700">
+                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Hard Drive Capacity</td>
+                            <td class="py-2">256</td>
+                        </tr>
+                        <tr class="border-b border-gray-700">
+                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Graphics Card</td>
+                            <td class="py-2">Integrated</td>
+                        </tr>
+                        <tr class="border-b border-gray-700">
+                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Memory</td>
+                            <td class="py-2">8GB</td>
+                        </tr>
+                        <tr class="border-b border-gray-700">
+                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Processor Speed</td>
+                            <td class="py-2">3.6</td>
+                        </tr>
+                        <tr class="border-b border-gray-700">
+                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Brand</td>
+                            <td class="py-2">Lenovo</td>
+                        </tr>
+                        <tr class="border-b border-gray-700">
+                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Product code</td>
+                            <td class="py-2">LENOVO</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Bob Shop ID</td>
+                            <td class="py-2">646948620</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Page Content -->
+    <div id="login-page-content" class="page-content flex-1 flex justify-center items-center p-4">
+        <div class="bg-gray-900 rounded-lg shadow-md p-8 w-full max-w-md">
+            <h2 class="text-2xl font-semibold text-white mb-6 text-center">Admin Login</h2>
+            <form id="login-form" class="space-y-4">
+                <div>
+                    <label for="username" class="block text-gray-300 text-sm font-bold mb-2">Username:</label>
+                    <input type="text" id="username" name="username" class="shadow appearance-none border border-gray-700 rounded w-full py-2 px-3 bg-gray-800 text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" placeholder="admin" required>
+                </div>
+                <div>
+                    <label for="password" class="block text-gray-300 text-sm font-bold mb-2">Password:</label>
+                    <input type="password" id="password" name="password" class="shadow appearance-none border border-gray-700 rounded w-full py-2 px-3 bg-gray-800 text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" placeholder="password123" required>
+                </div>
+                <p id="error-message" class="text-red-400 text-sm hidden">Invalid username or password.</p>
+                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300">
+                    Login
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add New Product Listing Page Content -->
+    <div id="add-listing-page-content" class="page-content flex-1 p-4 md:p-8 max-w-3xl mx-auto">
+        <!-- Back Button -->
+        <button onclick="showPage('product-listing-content')" class="flex items-center text-blue-400 hover:underline mb-6 focus:outline-none">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Back to Listings
+        </button>
+
+        <div class="bg-gray-900 rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-semibold text-white mb-6">Add New Product Listing</h2>
+            <form id="add-listing-form" class="space-y-4">
+                <div>
+                    <label for="product-name" class="block text-gray-300 text-sm font-bold mb-2">Product Name:</label>
+                    <input type="text" id="product-name" name="productName" class="shadow appearance-none border border-gray-700 rounded w-full py-2 px-3 bg-gray-800 text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" placeholder="e.g., Lenovo Thinkpad X1 Carbon" required>
+                </div>
+                <div>
+                    <label for="description" class="block text-gray-300 text-sm font-bold mb-2">Description:</label>
+                    <textarea id="description" name="description" rows="4" class="shadow appearance-none border border-gray-700 rounded w-full py-2 px-3 bg-gray-800 text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" placeholder="Detailed specifications and features..." required></textarea>
+                </div>
+                <div>
+                    <label for="price" class="block text-gray-300 text-sm font-bold mb-2">Price (R):</label>
+                    <input type="number" id="price" name="price" class="shadow appearance-none border border-gray-700 rounded w-full py-2 px-3 bg-gray-800 text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" placeholder="e.g., 5999.00" step="0.01" required>
+                </div>
+                <div>
+                    <label for="original-price" class="block text-gray-300 text-sm font-bold mb-2">Original Price (R, for discount display):</label>
+                    <input type="number" id="original-price" name="originalPrice" class="shadow appearance-none border border-gray-700 rounded w-full py-2 px-3 bg-gray-800 text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" placeholder="e.g., 15000.00" step="0.01">
+                </div>
+                <div>
+                    <label for="image-urls" class="block text-gray-300 text-sm font-bold mb-2">Image URLs (one per line):</label>
+                    <textarea id="image-urls" name="imageUrls" rows="4" class="shadow appearance-none border border-gray-700 rounded w-full py-2 px-3 bg-gray-800 text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" placeholder="Paste image URLs here, one per line." required></textarea>
+                </div>
+                <div>
+                    <label for="condition" class="block text-gray-300 text-sm font-bold mb-2">Condition:</label>
+                    <select id="condition" name="condition" class="shadow border border-gray-700 rounded w-full py-2 px-3 bg-gray-800 text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" required>
+                        <option value="">Select Condition</option>
+                        <option value="New">New</option>
+                        <option value="Secondhand">Secondhand</option>
+                        <option value="Refurbished">Refurbished</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="location" class="block text-gray-300 text-sm font-bold mb-2">Location:</label>
+                    <input type="text" id="location" name="location" class="shadow appearance-none border border-gray-700 rounded w-full py-2 px-3 bg-gray-800 text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" placeholder="e.g., South Africa">
+                </div>
+                <div>
+                    <label for="screen-size" class="block text-gray-300 text-sm font-bold mb-2">Screen Size:</label>
+                    <input type="text" id="screen-size" name="screenSize" class="shadow appearance-none border border-gray-700 rounded w-full py-2 px-3 bg-gray-800 text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" placeholder="e.g., 15.6">
+                </div>
+                <div>
+                    <label for="hard-drive" class="block text-gray-300 text-sm font-bold mb-2">Hard Drive Capacity:</label>
+                    <input type="text" id="hard-drive" name="hardDrive" class="shadow appearance-none border border-gray-700 rounded w-full py-2 px-3 bg-gray-800 text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" placeholder="e.g., 256GB SSD">
+                </div>
+                <div>
+                    <label for="graphics-card" class="block text-gray-300 text-sm font-bold mb-2">Graphics Card:</label>
+                    <input type="text" id="graphics-card" name="graphicsCard" class="shadow appearance-none border border-gray-700 rounded w-full py-2 px-3 bg-gray-800 text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" placeholder="e.g., Integrated">
+                </div>
+                <div>
+                    <label for="memory" class="block text-gray-300 text-sm font-bold mb-2">Memory (RAM):</label>
+                    <input type="text" id="memory" name="memory" class="shadow appearance-none border border-gray-700 rounded w-full py-2 px-3 bg-gray-800 text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" placeholder="e.g., 8GB">
+                </div>
+                <div>
+                    <label for="processor-speed" class="block text-gray-300 text-sm font-bold mb-2">Processor Speed:</label>
+                    <input type="text" id="processor-speed" name="processorSpeed" class="shadow appearance-none border border-gray-700 rounded w-full py-2 px-3 bg-gray-800 text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" placeholder="e.g., 3.6GHz">
+                </div>
+                <div>
+                    <label for="brand" class="block text-gray-300 text-sm font-bold mb-2">Brand:</label>
+                    <input type="text" id="brand" name="brand" class="shadow appearance-none border border-gray-700 rounded w-full py-2 px-3 bg-gray-800 text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" placeholder="e.g., Lenovo">
+                </div>
+                <div>
+                    <label for="product-code" class="block text-gray-300 text-sm font-bold mb-2">Product Code:</label>
+                    <input type="text" id="product-code" name="productCode" class="shadow appearance-none border border-gray-700 rounded w-full py-2 px-3 bg-gray-800 text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500" placeholder="e.g., LENOVO">
+                </div>
+                <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300">
+                    Add Listing
+                </button>
+            </form>
+        </div>
+    </div>
+
     <script>
+        // Function to show a specific page and hide others
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => {
+                page.style.display = 'none';
+            });
+            document.getElementById(pageId).style.display = 'flex'; // Use flex for main content areas
+
+            // Special handling for add-listing-page-content to check login status
+            if (pageId === 'add-listing-page-content') {
+                if (sessionStorage.getItem('isLoggedIn') !== 'true') {
+                    showPage('login-page-content'); // Redirect to login if not logged in
+                }
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
+            // Initial page load: show product listing page
+            showPage('product-listing-content');
+
             const sortBySelect = document.getElementById('sort-by');
             const productGrid = document.getElementById('product-grid');
-            let productCards = Array.from(document.querySelectorAll('.product-card')); // Convert NodeList to Array
+            let productCards = Array.from(document.querySelectorAll('.product-card'));
 
-            // Store initial order
             const initialOrder = Array.from(productCards);
 
-            // Function to update counts
             function updateRefineCounts() {
                 let newCount = 0;
                 let secondhandCount = 0;
@@ -263,39 +515,70 @@
                 document.getElementById('count-refurbished').textContent = `(${refurbishedCount})`;
             }
 
-            // Initial call to update counts when the page loads
             updateRefineCounts();
 
             sortBySelect.addEventListener('change', (event) => {
                 const sortValue = event.target.value;
 
                 if (sortValue === 'price-asc') {
-                    // Sort by price: Low to High
                     productCards.sort((a, b) => {
                         const priceA = parseFloat(a.dataset.price);
                         const priceB = parseFloat(b.dataset.price);
                         return priceA - priceB;
                     });
                 } else if (sortValue === 'price-desc') {
-                    // Sort by price: High to Low
                     productCards.sort((a, b) => {
                         const priceA = parseFloat(a.dataset.price);
                         const priceB = parseFloat(b.dataset.price);
                         return priceB - priceA;
                     });
                 } else {
-                    // Default sort (restore initial order)
                     productCards = Array.from(initialOrder);
                 }
 
-                // Clear current grid and append sorted cards
                 productGrid.innerHTML = '';
                 productCards.forEach(card => {
                     productGrid.appendChild(card);
                 });
 
-                // Re-calculate and update counts after sorting (though sorting doesn't change counts, good practice)
                 updateRefineCounts();
+            });
+
+            // Login form submission handler
+            document.getElementById('login-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                const errorMessage = document.getElementById('error-message');
+
+                const correctUsername = 'admin';
+                const correctPassword = 'password123';
+
+                if (username === correctUsername && password === correctPassword) {
+                    sessionStorage.setItem('isLoggedIn', 'true');
+                    showPage('add-listing-page-content'); // Show the add listing page
+                } else {
+                    errorMessage.classList.remove('hidden');
+                }
+            });
+
+            // Add listing form submission handler
+            document.getElementById('add-listing-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const formData = new FormData(this);
+                const productData = {};
+                for (const [key, value] of formData.entries()) {
+                    if (key === 'imageUrls') {
+                        productData[key] = value.split('\n').map(url => url.trim()).filter(url => url !== '');
+                    } else {
+                        productData[key] = value;
+                    }
+                }
+
+                console.log('New Product Listing Data:', productData);
+                this.reset();
+                alert('Product listing added! (Check console for data)');
             });
         });
     </script>
