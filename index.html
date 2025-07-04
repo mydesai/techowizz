@@ -1,12 +1,9 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Techowizz</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Inter Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -90,22 +87,49 @@
         .text-vibrant-orange-500 {
             color: var(--vibrant-orange-500);
         }
+
+        /* Style for the slider track and thumb */
+        input[type="range"]::-webkit-slider-runnable-track {
+            background: var(--new-green-500); /* Use custom green for track */
+            border-radius: 5px;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            background: #fff; /* White thumb */
+            border: 2px solid var(--new-green-700); /* Green border */
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            cursor: pointer;
+            -webkit-appearance: none; /* Override default */
+            margin-top: -8px; /* Center thumb vertically */
+        }
+
+        input[type="range"]::-moz-range-track {
+            background: var(--new-green-500);
+            border-radius: 5px;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            background: #fff;
+            border: 2px solid var(--new-green-700);
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
 
-    <!-- Header Section -->
     <header class="bg-gray-800 shadow-lg py-4 px-6 md:px-8 flex flex-col md:flex-row items-center justify-between sticky top-0 z-10 space-y-4 md:space-y-0">
         <div class="flex items-center space-x-4 w-full md:w-auto justify-between md:justify-start">
-            <!-- Techowizz name with bright light green color -->
             <h1 class="text-2xl font-bold text-new-green-500 cursor-pointer" onclick="showPage('product-listing-content')">Techowizz</h1>
-            <!-- Hamburger Icon for mobile, hidden on larger screens -->
             <button class="text-gray-400 hover:text-white focus:outline-none md:hidden">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
         </div>
 
-        <!-- Search within results -->
         <div class="w-full md:w-1/2 lg:w-1/3 relative">
             <label for="search-results" class="sr-only">Search</label>
             <input type="text" id="search-results" placeholder="Search"
@@ -117,7 +141,6 @@
         </div>
 
         <div class="flex items-center space-x-4 hidden md:flex">
-            <!-- Sort by dropdown -->
             <label for="sort-by" class="sr-only">Sort by</label>
             <select id="sort-by" class="bg-gray-700 text-gray-200 py-1.5 px-3 rounded-md border border-gray-600 focus:ring-new-green-500 focus:border-new-green-500">
                 <option value="default">Sort by Default</option>
@@ -127,14 +150,11 @@
         </div>
     </header>
 
-    <!-- Main Content Area -->
-    <!-- Product Listing Page Content -->
-    <div id="product-listing-content" class="page-content flex flex-1 flex-col p-4 md:p-8 space-y-6">
+    <div id="product-listing-content" class="page-content flex flex-1 flex-col p-4 md:p-8 space-y-6 md:flex-row md:space-x-6">
 
-        <!-- Filter Options -->
-        <div class="bg-gray-900 rounded-lg shadow-md p-4 flex flex-wrap gap-4 justify-center">
-            <h2 class="text-xl font-semibold text-white mr-4">Filter by Condition:</h2>
-            <div class="flex items-center space-x-4">
+        <div class="w-full md:w-1/4 lg:w-1/5 bg-gray-900 rounded-lg shadow-md p-4 flex flex-col space-y-4">
+            <h2 class="text-xl font-semibold text-white">Filter by Condition:</h2>
+            <div class="flex flex-col space-y-2">
                 <label class="flex items-center text-gray-300">
                     <input type="radio" name="condition-filter" value="all" class="form-radio h-4 w-4 text-new-green-500 rounded-full" checked>
                     <span class="ml-2">All <span class="text-gray-400" id="count-all">(0)</span></span>
@@ -152,21 +172,43 @@
                     <span class="ml-2">Refurbished <span class="text-gray-400" id="count-refurbished">(0)</span></span>
                 </label>
             </div>
+
+            <div class="w-full bg-gray-900 rounded-lg shadow-md p-4 flex flex-col space-y-4 mt-4">
+                <h2 class="text-xl font-semibold text-white">Filter by RAM:</h2>
+                <div class="flex flex-col space-y-2">
+                    <label class="flex items-center text-gray-300">
+                        <input type="checkbox" id="ram-filter-enable" class="form-checkbox h-4 w-4 text-new-green-500 rounded">
+                        <span class="ml-2">Enable RAM Filter</span>
+                    </label>
+                    <div id="ram-slider-container" class="hidden">
+                        <input type="range" id="ram-slider" min="0" max="4" value="0" step="1" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer range-lg">
+                        <div class="flex justify-between text-sm text-gray-400 mt-1">
+                            <span>4GB</span>
+                            <span>6GB</span>
+                            <span>8GB</span>
+                            <span>16GB</span>
+                            <span>32GB</span>
+                        </div>
+                        <p class="text-center text-white mt-2">Minimum RAM: <span id="selected-ram-value">4GB</span></p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Right Main Content - Product Grid -->
         <main id="product-grid" class="flex-1 grid grid-cols-1 gap-6">
 
-            <!-- Product Card 1 -->
-            <div class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative cursor-pointer flex flex-col md:flex-row" data-price="3999" data-condition="Secondhand" onclick="showPage('product-detail-content')">
+            <div class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative cursor-pointer flex flex-col md:flex-row" data-price="3999" data-condition="Secondhand" data-ram="8" onclick="showPage('product-detail-content')">
                 <div class="absolute top-2 right-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded-full z-10">67% OFF</div>
-                <img src="https://img.bobshop.co.za/f_auto,q_auto:eco,c_fit,w_800,h_800,d_notfound.png/user/3054884/WhatsApp_Image_2025-06-21_at_19.21.47_3fe15a6a_3RcNFeBpD.jpg" alt="Lenovo V15 Business Laptop" class="w-full md:w-1/3 h-48 object-cover rounded-t-lg md:rounded-l-lg md:rounded-t-none">
+                <div class="w-full md:w-1/3 h-48 flex items-center justify-center bg-gray-700 rounded-t-lg md:rounded-l-lg md:rounded-t-none">
+                    <img src="https://img.bobshop.co.za/f_auto,q_auto:eco,c_fit,w_800,h_800,d_notfound.png/user/3054884/WhatsApp_Image_2025-06-21_at_19.21.47_3fe15a6a_3RcNFeBpD.jpg" alt="Lenovo V15 Business Laptop" class="max-h-full max-w-full object-contain">
+                </div>
                 <div class="p-4 flex-1 flex flex-col w-full md:w-2/3">
                     <div>
                         <h3 class="text-lg font-semibold text-white mb-1">Lenovo V15 Business Laptop</h3>
                         <p class="text-sm text-gray-400 mb-2">
                             <span class="font-semibold">PROCESSOR:</span> 10th Gen i5 <br>
                             <span class="font-semibold">GRAPHICS:</span> UHD Graphics <br>
+                            <span class="font-semibold">SCREEN:</span> 15.6 inches <br>
                             <span class="font-semibold">RAM:</span> 8GB <br>
                             <span class="font-semibold">ROM:</span> 256GB SSD
                         </p>
@@ -184,16 +226,18 @@
                 </div>
             </div>
 
-            <!-- Product Card 2 -->
-            <div class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative cursor-pointer flex flex-col md:flex-row" data-price="4499" data-condition="Secondhand" onclick="showPage('product-detail-content')">
+            <div class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative cursor-pointer flex flex-col md:flex-row" data-price="4499" data-condition="Secondhand" data-ram="8" onclick="showPage('product-detail-content')">
                 <div class="absolute top-2 right-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded-full z-10">70% OFF</div>
-                <img src="https://placehold.co/400x300/2D3748/A0AEC0?text=Laptop+2" alt="Lenovo Thinkpad E15" class="w-full md:w-1/3 h-48 object-cover rounded-t-lg md:rounded-l-lg md:rounded-t-none">
+                <div class="w-full md:w-1/3 h-48 flex items-center justify-center bg-gray-700 rounded-t-lg md:rounded-l-lg md:rounded-t-none">
+                    <img src="https://placehold.co/400x300/2D3748/A0AEC0?text=Laptop+2" alt="Lenovo Thinkpad E15" class="max-h-full max-w-full object-contain">
+                </div>
                 <div class="p-4 flex-1 flex flex-col w-full md:w-2/3">
                     <div>
                         <h3 class="text-lg font-semibold text-white mb-1">Lenovo Thinkpad E15 | 10th Gen i5, 8GB RAM, 512GB SSD, UHD Graphics, FHD</h3>
                         <p class="text-sm text-gray-400 mb-2">
                             <span class="font-semibold">PROCESSOR:</span> 10th Gen i5 <br>
                             <span class="font-semibold">GRAPHICS:</span> UHD Graphics <br>
+                            <span class="font-semibold">SCREEN:</span> 15.6 inches <br>
                             <span class="font-semibold">RAM:</span> 8GB <br>
                             <span class="font-semibold">ROM:</span> 512GB SSD
                         </p>
@@ -211,16 +255,18 @@
                 </div>
             </div>
 
-            <!-- Product Card 3 -->
-            <div class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative cursor-pointer flex flex-col md:flex-row" data-price="7999" data-condition="New" onclick="showPage('product-detail-content')">
+            <div class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative cursor-pointer flex flex-col md:flex-row" data-price="7999" data-condition="New" data-ram="16" onclick="showPage('product-detail-content')">
                 <div class="absolute top-2 right-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded-full z-10">60% OFF</div>
-                <img src="https://placehold.co/400x300/2D3748/A0AEC0?text=Laptop+3" alt="ASUS Zenbook Ultrabook" class="w-full md:w-1/3 h-48 object-cover rounded-t-lg md:rounded-l-lg md:rounded-t-none">
+                <div class="w-full md:w-1/3 h-48 flex items-center justify-center bg-gray-700 rounded-t-lg md:rounded-l-lg md:rounded-t-none">
+                    <img src="https://placehold.co/400x300/2D3748/A0AEC0?text=Laptop+3" alt="ASUS Zenbook Ultrabook" class="max-h-full max-w-full object-contain">
+                </div>
                 <div class="p-4 flex-1 flex flex-col w-full md:w-2/3">
                     <div>
                         <h3 class="text-lg font-semibold text-white mb-1">ASUS Zenbook Ultrabook | 11th Gen i7, 16GB RAM, 512GB SSD, Full HD, Intel Iri...</h3>
                         <p class="text-sm text-gray-400 mb-2">
                             <span class="font-semibold">PROCESSOR:</span> 11th Gen i7 <br>
                             <span class="font-semibold">GRAPHICS:</span> Intel Iris Xe <br>
+                            <span class="font-semibold">SCREEN:</span> 13.3 inches <br>
                             <span class="font-semibold">RAM:</span> 16GB <br>
                             <span class="font-semibold">ROM:</span> 512GB SSD
                         </p>
@@ -238,15 +284,17 @@
                 </div>
             </div>
 
-            <!-- Product Card 4 -->
-            <div class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative cursor-pointer flex flex-col md:flex-row" data-price="4499" data-condition="Secondhand" onclick="showPage('product-detail-content')">
-                <img src="https://placehold.co/400x300/2D3748/A0AEC0?text=Laptop+4" alt="Lenovo Thinkpad E15" class="w-full md:w-1/3 h-48 object-cover rounded-t-lg md:rounded-l-lg md:rounded-t-none">
+            <div class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative cursor-pointer flex flex-col md:flex-row" data-price="4499" data-condition="Secondhand" data-ram="8" onclick="showPage('product-detail-content')">
+                <div class="w-full md:w-1/3 h-48 flex items-center justify-center bg-gray-700 rounded-t-lg md:rounded-l-lg md:rounded-t-none">
+                    <img src="https://placehold.co/400x300/2D3748/A0AEC0?text=Laptop+4" alt="Lenovo Thinkpad E15" class="max-h-full max-w-full object-contain">
+                </div>
                 <div class="p-4 flex-1 flex flex-col w-full md:w-2/3">
                     <div>
                         <h3 class="text-lg font-semibold text-white mb-1">Lenovo Thinkpad E15 | 10th Gen i5, 8GB RAM, 512GB SSD, UHD Graphics, FHD</h3>
                         <p class="text-sm text-gray-400 mb-2">
                             <span class="font-semibold">PROCESSOR:</span> 10th Gen i5 <br>
                             <span class="font-semibold">GRAPHICS:</span> UHD Graphics <br>
+                            <span class="font-semibold">SCREEN:</span> 15.6 inches <br>
                             <span class="font-semibold">RAM:</span> 8GB <br>
                             <span class="font-semibold">ROM:</span> 512GB SSD
                         </p>
@@ -263,15 +311,17 @@
                 </div>
             </div>
 
-            <!-- Product Card 5 -->
-            <div class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative cursor-pointer flex flex-col md:flex-row" data-price="4999" data-condition="Secondhand" onclick="showPage('product-detail-content')">
-                <img src="https://placehold.co/400x300/2D3748/A0AEC0?text=Laptop+5" alt="Lenovo ThinkPad X390" class="w-full md:w-1/3 h-48 object-cover rounded-t-lg md:rounded-l-lg md:rounded-t-none">
+            <div class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative cursor-pointer flex flex-col md:flex-row" data-price="4999" data-condition="Secondhand" data-ram="8" onclick="showPage('product-detail-content')">
+                <div class="w-full md:w-1/3 h-48 flex items-center justify-center bg-gray-700 rounded-t-lg md:rounded-l-lg md:rounded-t-none">
+                    <img src="https://placehold.co/400x300/2D3748/A0AEC0?text=Laptop+5" alt="Lenovo ThinkPad X390" class="max-h-full max-w-full object-contain">
+                </div>
                 <div class="p-4 flex-1 flex flex-col w-full md:w-2/3">
                     <div>
                         <h3 class="text-lg font-semibold text-white mb-1">Lenovo ThinkPad X390 | CORE i5, 8GB RAM, 256GB SSD</h3>
                         <p class="text-sm text-gray-400 mb-2">
                             <span class="font-semibold">PROCESSOR:</span> CORE i5 <br>
                             <span class="font-semibold">GRAPHICS:</span> Integrated <br>
+                            <span class="font-semibold">SCREEN:</span> 14 inches <br>
                             <span class="font-semibold">RAM:</span> 8GB <br>
                             <span class="font-semibold">ROM:</span> 256GB SSD
                         </p>
@@ -288,15 +338,17 @@
                 </div>
             </div>
 
-            <!-- Product Card 6 -->
-            <div class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative cursor-pointer flex flex-col md:flex-row" data-price="3999" data-condition="Secondhand" onclick="showPage('product-detail-content')">
-                <img src="https://placehold.co/400x300/2D3748/A0AEC0?text=Laptop+6" alt="Lenovo V15 Business Laptop" class="w-full md:w-1/3 h-48 object-cover rounded-t-lg md:rounded-l-lg md:rounded-t-none">
+            <div class="product-card bg-gray-800 rounded-lg shadow-md overflow-hidden relative cursor-pointer flex flex-col md:flex-row" data-price="3999" data-condition="Secondhand" data-ram="8" onclick="showPage('product-detail-content')">
+                <div class="w-full md:w-1/3 h-48 flex items-center justify-center bg-gray-700 rounded-t-lg md:rounded-l-lg md:rounded-t-none">
+                    <img src="https://placehold.co/400x300/2D3748/A0AEC0?text=Laptop+6" alt="Lenovo V15 Business Laptop" class="max-h-full max-w-full object-contain">
+                </div>
                 <div class="p-4 flex-1 flex flex-col w-full md:w-2/3">
                     <div>
                         <h3 class="text-lg font-semibold text-white mb-1">Lenovo V15 Business Laptop | 10th Gen i5, 8GB Ram, 256GB SSD, UHD Graphic...</h3>
                         <p class="text-sm text-gray-400 mb-2">
                             <span class="font-semibold">PROCESSOR:</span> 10th Gen i5 <br>
                             <span class="font-semibold">GRAPHICS:</span> UHD Graphics <br>
+                            <span class="font-semibold">SCREEN:</span> 15.6 inches <br>
                             <span class="font-semibold">RAM:</span> 8GB <br>
                             <span class="font-semibold">ROM:</span> 256GB SSD
                         </p>
@@ -316,20 +368,16 @@
         </main>
     </div>
 
-    <!-- Product Detail Page Content -->
     <div id="product-detail-content" class="page-content flex-1 p-4 md:p-8 max-w-7xl mx-auto">
-        <!-- Back Button -->
         <button onclick="showPage('product-listing-content')" class="flex items-center text-new-green-500 hover:underline mb-6 focus:outline-none">
             <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
             Back to Listings
         </button>
 
         <div class="bg-gray-900 rounded-lg shadow-md p-6 mb-6 flex flex-col lg:flex-row lg:space-x-8">
-            <!-- Product Images Section -->
             <div class="w-full lg:w-1/2 flex flex-col items-center">
                 <div class="relative w-full max-w-md mb-4">
-                    <img src="https://img.bobshop.co.za/f_auto,q_auto:eco,c_fit,w_800,h_800,d_notfound.png/user/3054884/WhatsApp_Image_2025-06-21_at_19.21.47_3fe15a6a_3RcNFeBpD.jpg" alt="Main Product Image" class="w-full rounded-lg shadow-lg object-cover">
-                    <!-- Navigation arrows (optional, for image gallery) -->
+                    <img src="https://img.bobshop.co.za/f_auto,q_auto:eco,c_fit,w_800,h_800,d_notfound.png/user/3054884/WhatsApp_Image_2025-06-21_at_19.21.47_3fe15a6a_3RcNFeBpD.jpg" alt="Main Product Image" class="w-full rounded-lg shadow-lg object-contain">
                     <button class="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-700 bg-opacity-75 text-white p-2 rounded-full hover:bg-opacity-100 focus:outline-none">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                     </button>
@@ -338,14 +386,12 @@
                     </button>
                 </div>
                 <div class="flex space-x-2">
-                    <!-- Thumbnail images -->
-                    <img src="https://img.bobshop.co.za/f_auto,q_auto:eco,c_fit,w_800,h_800,d_notfound.png/user/3054884/WhatsApp_Image_2025-06-21_at_19.21.47_3fe15a6a_3RcNFeBpD.jpg" alt="Thumbnail 1" class="w-20 h-20 object-cover rounded-md border-2 border-new-green-500 cursor-pointer">
-                    <img src="https://placehold.co/80x80/2D3748/A0AEC0?text=Thumb2" alt="Thumbnail 2" class="w-20 h-20 object-cover rounded-md border-2 border-transparent hover:border-new-green-500 cursor-pointer">
-                    <img src="https://placehold.co/80x80/2D3748/A0AEC0?text=Thumb3" alt="Thumbnail 3" class="w-20 h-20 object-cover rounded-md border-2 border-transparent hover:border-new-green-500 cursor-pointer">
+                    <img src="https://img.bobshop.co.za/f_auto,q_auto:eco,c_fit,w_800,h_800,d_notfound.png/user/3054884/WhatsApp_Image_2025-06-21_at_19.21.47_3fe15a6a_3RcNFeBpD.jpg" alt="Thumbnail 1" class="w-20 h-20 object-contain rounded-md border-2 border-new-green-500 cursor-pointer">
+                    <img src="https://placehold.co/80x80/2D3748/A0AEC0?text=Thumb2" alt="Thumbnail 2" class="w-20 h-20 object-contain rounded-md border-2 border-transparent hover:border-new-green-500 cursor-pointer">
+                    <img src="https://placehold.co/80x80/2D3748/A0AEC0?text=Thumb3" alt="Thumbnail 3" class="w-20 h-20 object-contain rounded-md border-2 border-transparent hover:border-new-green-500 cursor-pointer">
                 </div>
             </div>
 
-            <!-- Product Info Section -->
             <div class="w-full lg:w-1/2 mt-8 lg:mt-0">
                 <h1 class="text-3xl font-bold text-white mb-2">Lenovo V15 Business Laptop | 10th Gen i5, 8GB Ram, 256GB SSD, UHD Graphics, FHD | bargain</h1>
                 <div class="flex items-center space-x-2 mb-4">
@@ -361,7 +407,6 @@
 
                 <button class="w-full bg-new-green-600 text-black py-3 rounded-md font-semibold text-lg hover:bg-new-green-700 transition duration-300 mb-6">I'm interested</button>
 
-                <!-- Shipping Information -->
                 <div class="bg-gray-800 rounded-lg p-4 mb-6">
                     <h3 class="text-lg font-semibold text-white mb-2">Shipping</h3>
                     <div class="flex items-center text-gray-300 mb-1">
@@ -374,7 +419,6 @@
                     </div>
                 </div>
 
-                <!-- Seller Information -->
                 <div class="bg-gray-800 rounded-lg p-4 mb-6">
                     <h3 class="text-lg font-semibold text-white mb-2">Seller</h3>
                     <div class="flex items-center text-gray-300">
@@ -390,7 +434,6 @@
             </div>
         </div>
 
-        <!-- Product Details Table -->
         <div class="bg-gray-900 rounded-lg shadow-md p-6">
             <h2 class="text-xl font-semibold text-white mb-4">Product details</h2>
             <div class="overflow-x-auto">
@@ -405,8 +448,8 @@
                             <td class="py-2">South Africa</td>
                         </tr>
                         <tr class="border-b border-gray-700">
-                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Screen Size</td>
-                            <td class="py-2">15.6</td>
+                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Screen</td>
+                            <td class="py-2">15.6 inches</td>
                         </tr>
                         <tr class="border-b border-gray-700">
                             <td class="py-2 pr-4 font-medium whitespace-nowrap">Hard Drive Capacity</td>
@@ -436,7 +479,6 @@
                             <td class="py-2 pr-4 font-medium whitespace-nowrap">Bob Shop ID</td>
                             <td class="py-2">646948620</td>
                         </tr>
-                        <!-- New fields for Product Details Table -->
                         <tr class="border-b border-gray-700">
                             <td class="py-2 pr-4 font-medium whitespace-nowrap">Processor</td>
                             <td class="py-2">10th Gen i5</td>
@@ -475,21 +517,35 @@
 
             const sortBySelect = document.getElementById('sort-by');
             const productGrid = document.getElementById('product-grid');
-            let productCards = Array.from(document.querySelectorAll('.product-card'));
-
-            // Store initial order
-            const initialOrder = Array.from(productCards);
-
+            const searchInput = document.getElementById('search-results');
             const conditionFilterRadios = document.querySelectorAll('input[name="condition-filter"]');
 
+            // RAM Filter elements
+            const ramFilterEnableCheckbox = document.getElementById('ram-filter-enable');
+            const ramSliderContainer = document.getElementById('ram-slider-container');
+            const ramSlider = document.getElementById('ram-slider');
+            const selectedRamValueSpan = document.getElementById('selected-ram-value');
+            const ramOptions = [4, 6, 8, 16, 32]; // RAM values in GB
+
+            // Store all product cards in their initial order
+            const initialProductCards = Array.from(document.querySelectorAll('.product-card'));
+
+            // Function to display products on the grid
+            function displayProducts(productsToDisplay) {
+                productGrid.innerHTML = ''; // Clear current products
+                productsToDisplay.forEach(card => productGrid.appendChild(card));
+                console.log(`Displayed ${productsToDisplay.length} products.`); // Diagnostic log
+            }
+
+            // Function to update filter counts (e.g., for conditions)
             function updateRefineCounts() {
                 let newCount = 0;
                 let secondhandCount = 0;
                 let refurbishedCount = 0;
-                const allCount = initialOrder.length; // Count all products from initial order
+                const allCount = initialProductCards.length;
 
-                initialOrder.forEach(card => {
-                    const condition = card.dataset.condition; // Get condition from data-condition attribute
+                initialProductCards.forEach(card => {
+                    const condition = card.dataset.condition;
                     if (condition === 'New') {
                         newCount++;
                     } else if (condition === 'Secondhand') {
@@ -499,67 +555,76 @@
                     }
                 });
 
-                document.getElementById('count-all').textContent = `(${allCount})`;
-                document.getElementById('count-new').textContent = `(${newCount})`;
-                document.getElementById('count-secondhand').textContent = `(${secondhandCount})`;
-                document.getElementById('count-refurbished').textContent = `(${refurbishedCount})`;
+                document.getElementById('count-all').innerText = `(${allCount})`;
+                document.getElementById('count-new').innerText = `(${newCount})`;
+                document.getElementById('count-secondhand').innerText = `(${secondhandCount})`;
+                document.getElementById('count-refurbished').innerText = `(${refurbishedCount})`;
             }
 
-            // Function to filter products
-            function filterProducts() {
+            // Main function to apply all filters, search, and sort
+            function applyFiltersSortAndSearch() {
+                let filteredProducts = [...initialProductCards]; // Start with all products
+
+                // 1. Apply Condition Filter
                 const selectedCondition = document.querySelector('input[name="condition-filter"]:checked').value;
+                if (selectedCondition !== 'all') {
+                    filteredProducts = filteredProducts.filter(card => card.dataset.condition === selectedCondition);
+                }
 
-                productGrid.innerHTML = ''; // Clear current grid
-
-                initialOrder.forEach(card => {
-                    const cardCondition = card.dataset.condition;
-                    if (selectedCondition === 'all' || cardCondition === selectedCondition) {
-                        productGrid.appendChild(card);
-                    }
-                });
-                // Re-apply sorting after filtering
-                applySorting();
-            }
-
-            // Function to apply sorting
-            function applySorting() {
-                const sortValue = sortBySelect.value;
-                let currentProductCards = Array.from(productGrid.children); // Get currently displayed cards
-
-                if (sortValue === 'price-asc') {
-                    currentProductCards.sort((a, b) => {
-                        const priceA = parseFloat(a.dataset.price);
-                        const priceB = parseFloat(b.dataset.price);
-                        return priceA - priceB;
-                    });
-                } else if (sortValue === 'price-desc') {
-                    currentProductCards.sort((a, b) => {
-                        const priceA = parseFloat(a.dataset.price);
-                        const priceB = parseFloat(b.dataset.price);
-                        return priceB - priceA;
+                // 2. Apply Search Filter
+                const searchTerm = searchInput.value.toLowerCase();
+                if (searchTerm) {
+                    filteredProducts = filteredProducts.filter(card => {
+                        const title = card.querySelector('h3').innerText.toLowerCase();
+                        const description = card.querySelector('p').innerText.toLowerCase();
+                        return title.includes(searchTerm) || description.includes(searchTerm);
                     });
                 }
-                // If 'default', no specific sorting is needed as filtering maintains relative order
 
-                productGrid.innerHTML = ''; // Clear grid again
-                currentProductCards.forEach(card => {
-                    productGrid.appendChild(card);
-                });
+                // 3. Apply RAM Filter (if enabled)
+                if (ramFilterEnableCheckbox.checked) {
+                    const minRam = ramOptions[parseInt(ramSlider.value)];
+                    filteredProducts = filteredProducts.filter(card => {
+                        const cardRam = parseFloat(card.dataset.ram);
+                        return cardRam >= minRam;
+                    });
+                }
+
+                // 4. Apply Sorting
+                const sortBy = sortBySelect.value;
+                if (sortBy === 'price-asc') {
+                    filteredProducts.sort((a, b) => parseFloat(a.dataset.price) - parseFloat(b.dataset.price));
+                } else if (sortBy === 'price-desc') {
+                    filteredProducts.sort((a, b) => parseFloat(b.dataset.price) - parseFloat(a.dataset.price));
+                }
+
+                // 5. Display the resulting products
+                displayProducts(filteredProducts);
             }
 
-
             // Event Listeners
-            sortBySelect.addEventListener('change', applySorting);
-
+            sortBySelect.addEventListener('change', applyFiltersSortAndSearch);
             conditionFilterRadios.forEach(radio => {
-                radio.addEventListener('change', filterProducts);
+                radio.addEventListener('change', applyFiltersSortAndSearch);
+            });
+            searchInput.addEventListener('input', applyFiltersSortAndSearch); // Trigger on search input
+
+            // RAM filter event listeners
+            ramFilterEnableCheckbox.addEventListener('change', () => {
+                ramSliderContainer.classList.toggle('hidden', !ramFilterEnableCheckbox.checked);
+                applyFiltersSortAndSearch();
             });
 
-            // Initial calls
+            ramSlider.addEventListener('input', () => {
+                selectedRamValueSpan.innerText = `${ramOptions[parseInt(ramSlider.value)]}GB`;
+                applyFiltersSortAndSearch();
+            });
+
+            // Initial calls to populate counts and apply default filters/sort
             updateRefineCounts();
-            filterProducts(); // Apply initial filter (which is 'all')
+            applyFiltersSortAndSearch(); // Initial display
+            selectedRamValueSpan.innerText = `${ramOptions[parseInt(ramSlider.value)]}GB`; // Set initial slider value display
         });
     </script>
-
 </body>
 </html>
