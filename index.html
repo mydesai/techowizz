@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Techowizz</title>
+    <title>TechoWizz</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -34,8 +35,8 @@
         /* Custom scrollbar - no longer needed for sidebar, but keeping for general reference */
         .custom-scroll {
             overflow-y: auto;
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
         }
         .custom-scroll::-webkit-scrollbar {
             display: none; /* Chrome, Safari, Opera */
@@ -124,6 +125,7 @@
 
     <header class="bg-gray-800 shadow-lg py-4 px-6 md:px-8 flex flex-col md:flex-row items-center justify-between sticky top-0 z-10 space-y-4 md:space-y-0">
         <div class="flex items-center space-x-4 w-full md:w-auto justify-between md:justify-start">
+            <!-- Reverted Techowizz logo to initial size and style -->
             <h1 class="text-2xl font-bold text-new-green-500 cursor-pointer" onclick="showPage('product-listing-content')">Techowizz</h1>
             <button class="text-gray-400 hover:text-white focus:outline-none md:hidden">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
@@ -133,8 +135,8 @@
         <div class="w-full md:w-1/2 lg:w-1/3 relative">
             <label for="search-results" class="sr-only">Search</label>
             <input type="text" id="search-results" placeholder="Search"
-                   class="w-full pl-4 pr-10 py-2 border border-new-green-500 bg-gray-700 text-gray-200 rounded-md
-                          focus:ring-new-green-500 focus:border-new-green-500">
+                           class="w-full pl-4 pr-10 py-2 border border-new-green-500 bg-gray-700 text-gray-200 rounded-md
+                                   focus:ring-new-green-500 focus:border-new-green-500">
             <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-200">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
             </button>
@@ -153,25 +155,7 @@
     <div id="product-listing-content" class="page-content flex flex-1 flex-col p-4 md:p-8 space-y-6 md:flex-row md:space-x-6">
 
         <div class="w-full md:w-1/4 lg:w-1/5 bg-gray-900 rounded-lg shadow-md p-4 flex flex-col space-y-4">
-            <h2 class="text-xl font-semibold text-white">Filter by Condition:</h2>
-            <div class="flex flex-col space-y-2">
-                <label class="flex items-center text-gray-300">
-                    <input type="radio" name="condition-filter" value="all" class="form-radio h-4 w-4 text-new-green-500 rounded-full" checked>
-                    <span class="ml-2">All <span class="text-gray-400" id="count-all">(0)</span></span>
-                </label>
-                <label class="flex items-center text-gray-300">
-                    <input type="radio" name="condition-filter" value="new" class="form-radio h-4 w-4 text-new-green-500 rounded-full">
-                    <span class="ml-2">New <span class="text-gray-400" id="count-new">(0)</span></span>
-                </label>
-                <label class="flex items-center text-gray-300">
-                    <input type="radio" name="condition-filter" value="secondhand" class="form-radio h-4 w-4 text-new-green-500 rounded-full">
-                    <span class="ml-2">Secondhand <span class="text-gray-400" id="count-secondhand">(0)</span></span>
-                </label>
-                <label class="flex items-center text-gray-300">
-                    <input type="radio" name="condition-filter" value="refurbished" class="form-radio h-4 w-4 text-new-green-500 rounded-full">
-                    <span class="ml-2">Refurbished <span class="text-gray-400" id="count-refurbished">(0)</span></span>
-                </label>
-            </div>
+            <!-- Removed Filter by Condition Section -->
 
             <div class="w-full bg-gray-900 rounded-lg shadow-md p-4 flex flex-col space-y-4 mt-4">
                 <h2 class="text-xl font-semibold text-white">Filter by RAM:</h2>
@@ -190,6 +174,27 @@
                             <span>32GB</span>
                         </div>
                         <p class="text-center text-white mt-2">Minimum RAM: <span id="selected-ram-value">4GB</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Price Filter Section -->
+            <div class="w-full bg-gray-900 rounded-lg shadow-md p-4 flex flex-col space-y-4 mt-4">
+                <h2 class="text-xl font-semibold text-white">Filter by Price:</h2>
+                <div class="flex flex-col space-y-2">
+                    <label class="flex items-center text-gray-300">
+                        <input type="checkbox" id="price-filter-enable" class="form-checkbox h-4 w-4 text-new-green-500 rounded">
+                        <span class="ml-2">Enable Price Filter</span>
+                    </label>
+                    <div id="price-slider-container" class="hidden">
+                        <input type="range" id="price-slider" min="0" max="3" value="0" step="1" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer range-lg">
+                        <div class="flex justify-between text-sm text-gray-400 mt-1">
+                            <span>R4K</span>
+                            <span>R6K</span>
+                            <span>R8K</span>
+                            <span>R10K+</span>
+                        </div>
+                        <p class="text-center text-white mt-2">Maximum Price: <span id="selected-price-value">R4K</span></p>
                     </div>
                 </div>
             </div>
@@ -314,137 +319,40 @@
         </main>
     </div>
 
-    <div id="product-detail-content" class="page-content flex-1 p-4 md:p-8 max-w-7xl mx-auto">
-        <button onclick="showPage('product-listing-content')" class="flex items-center text-new-green-500 hover:underline mb-6 focus:outline-none">
+    <div id="product-detail-content" class="page-content flex flex-col items-center justify-center p-4 md:p-8 min-h-[calc(100vh-80px)]">
+        <!-- Back to Listings Button - now in a box style -->
+        <button onclick="showPage('product-listing-content')" class="flex items-center bg-new-green-600 text-black px-4 py-2 rounded-md font-semibold text-sm hover:bg-new-green-700 transition duration-300 mb-6 self-start">
             <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
             Back to Listings
         </button>
 
-        <div class="bg-gray-900 rounded-lg shadow-md p-6 mb-6 flex flex-col lg:flex-row lg:space-x-8">
-            <div class="w-full lg:w-1/2 flex flex-col items-center">
-                <div class="relative w-full max-w-md mb-4">
-                    <img src="https://img.bobshop.co.za/f_auto,q_auto:eco,c_fit,w_800,h_800,d_notfound.png/user/3054884/WhatsApp_Image_2025-06-21_at_19.21.47_3fe15a6a_3RcNFeBpD.jpg" alt="Main Product Image" class="w-full rounded-lg shadow-lg object-contain">
-                    <button class="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-700 bg-opacity-75 text-white p-2 rounded-full hover:bg-opacity-100 focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                    </button>
-                    <button class="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-700 bg-opacity-75 text-white p-2 rounded-full hover:bg-opacity-100 focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                    </button>
-                </div>
-                <div class="flex space-x-2">
-                    <img src="https://img.bobshop.co.za/f_auto,q_auto:eco,c_fit,w_800,h_800,d_notfound.png/user/3054884/WhatsApp_Image_2025-06-21_at_19.21.47_3fe15a6a_3RcNFeBpD.jpg" alt="Thumbnail 1" class="w-20 h-20 object-contain rounded-md border-2 border-new-green-500 cursor-pointer">
-                    <img src="https://placehold.co/80x80/2D3748/A0AEC0?text=Thumb2" alt="Thumbnail 2" class="w-20 h-20 object-contain rounded-md border-2 border-transparent hover:border-new-green-500 cursor-pointer">
-                    <img src="https://placehold.co/80x80/2D3748/A0AEC0?text=Thumb3" alt="Thumbnail 3" class="w-20 h-20 object-contain rounded-md border-2 border-transparent hover:border-new-green-500 cursor-pointer">
-                </div>
+        <div class="bg-gray-900 rounded-lg shadow-md p-6 mb-6 w-full max-w-2xl">
+            <h3 class="text-lg font-semibold text-white mb-2">Shipping</h3>
+            <div class="flex items-center text-gray-300 mb-1">
+                <svg class="w-5 h-5 mr-2 text-new-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zM21 12c0 4.418-9 10-9 10S3 16.418 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                <span>Standard courier shipping from <span class="font-bold">R35.00</span></span>
             </div>
-
-            <div class="w-full lg:w-1/2 mt-8 lg:mt-0">
-                <h1 class="text-3xl font-bold text-white mb-2">Lenovo V15 Business Laptop | 10th Gen i5, 8GB Ram, 256GB SSD, UHD Graphics, FHD | bargain</h1>
-                <div class="flex items-center space-x-2 mb-4">
-                    <span class="bg-transparent-blue text-transparent-blue text-sm font-medium px-2.5 py-0.5 rounded-full">Secondhand</span>
-                    <span class="bg-new-green-600 text-new-green-200 text-sm font-medium px-2.5 py-0.5 rounded-full">available</span>
-                </div>
-
-                <p class="text-gray-400 text-sm mb-1">Indicative market price: <span class="line-through">R12,000.00</span></p>
-                <div class="flex items-baseline mb-6">
-                    <span class="text-4xl font-bold text-vibrant-orange-500 mr-2">R3,999.00</span>
-                    <span class="text-lg text-gray-400">minimum increment</span>
-                </div>
-
-                <button class="w-full bg-new-green-600 text-black py-3 rounded-md font-semibold text-lg hover:bg-new-green-700 transition duration-300 mb-6">I'm interested</button>
-
-                <div class="bg-gray-800 rounded-lg p-4 mb-6">
-                    <h3 class="text-lg font-semibold text-white mb-2">Shipping</h3>
-                    <div class="flex items-center text-gray-300 mb-1">
-                        <svg class="w-5 h-5 mr-2 text-new-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zM21 12c0 4.418-9 10-9 10S3 16.418 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                        <span>Standard courier shipping from <span class="font-bold">R35.00</span></span>
-                    </div>
-                    <div class="flex items-center text-gray-300">
-                        <svg class="w-5 h-5 mr-2 text-new-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <span>Ready to ship in <span class="font-bold">4 business days</span></span>
-                    </div>
-                </div>
-
-                <div class="bg-gray-800 rounded-lg p-4 mb-6">
-                    <h3 class="text-lg font-semibold text-white mb-2">Seller</h3>
-                    <div class="flex items-center text-gray-300">
-                        <span class="font-bold text-new-green-500 mr-2">TechoWizz</span>
-                        <svg class="w-4 h-4 text-yellow-500 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.683-1.539 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.565-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z"></path></svg>
-                        <span class="text-gray-400">4560</span>
-                    </div>
-                    <button class="text-new-green-500 hover:underline mt-3 flex items-center">
-                        <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-9 10-9 10S3 16.418 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                        Ask the seller a question
-                    </button>
-                </div>
+            <div class="flex items-center text-gray-300">
+                <svg class="w-5 h-5 mr-2 text-new-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <span>Ready to ship in <span class="font-bold">4 business days</span></span>
             </div>
         </div>
 
-        <div class="bg-gray-900 rounded-lg shadow-md p-6">
-            <h2 class="text-xl font-semibold text-white mb-4">Product details</h2>
-            <div class="overflow-x-auto">
-                <table class="w-full text-left text-gray-300">
-                    <tbody>
-                        <tr class="border-b border-gray-700">
-                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Condition</td>
-                            <td class="py-2">Secondhand</td>
-                        </tr>
-                        <tr class="border-b border-gray-700">
-                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Location</td>
-                            <td class="py-2">South Africa</td>
-                        </tr>
-                        <tr class="border-b border-gray-700">
-                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Screen</td>
-                            <td class="py-2">15.6 inches</td>
-                        </tr>
-                        <tr class="border-b border-gray-700">
-                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Hard Drive Capacity</td>
-                            <td class="py-2">256</td>
-                        </tr>
-                        <tr class="border-b border-gray-700">
-                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Graphics Card</td>
-                            <td class="py-2">Integrated</td>
-                        </tr>
-                        <tr class="border-b border-gray-700">
-                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Memory</td>
-                            <td class="py-2">8GB</td>
-                        </tr>
-                        <tr class="border-b border-gray-700">
-                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Processor Speed</td>
-                            <td class="py-2">3.6</td>
-                        </tr>
-                        <tr class="border-b border-gray-700">
-                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Brand</td>
-                            <td class="py-2">Lenovo</td>
-                        </tr>
-                        <tr class="border-b border-gray-700">
-                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Product code</td>
-                            <td class="py-2">LENOVO</td>
-                        </tr>
-                        <tr>
-                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Bob Shop ID</td>
-                            <td class="py-2">646948620</td>
-                        </tr>
-                        <tr class="border-b border-gray-700">
-                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Processor</td>
-                            <td class="py-2">10th Gen i5</td>
-                        </tr>
-                        <tr class="border-b border-gray-700">
-                            <td class="py-2 pr-4 font-medium whitespace-nowrap">Graphics</td>
-                            <td class="py-2">UHD Graphics</td>
-                        </tr>
-                        <tr class="border-b border-gray-700">
-                            <td class="py-2 pr-4 font-medium whitespace-nowrap">RAM</td>
-                            <td class="py-2">8GB</td>
-                        </tr>
-                        <tr>
-                            <td class="py-2 pr-4 font-medium whitespace-nowrap">ROM</td>
-                            <td class="py-2">256GB SSD</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div class="bg-gray-900 rounded-lg shadow-md p-4 w-full max-w-2xl">
+            <h3 class="text-lg font-semibold text-white mb-2">Seller</h3>
+            <div class="flex items-center justify-between text-gray-300 mb-3">
+                <span class="font-bold text-new-green-500 mr-2">TechoWizz</span>
+                <!-- Removed star SVG and 4560 span -->
+                <button class="bg-new-green-600 text-black px-4 py-1.5 rounded-md font-semibold text-sm hover:bg-new-green-700 transition duration-300">
+                    Buy Now
+                </button>
             </div>
+            <button class="text-new-green-500 hover:underline mt-3 flex items-center">
+                <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-9 10-9 10S3 16.418 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                Ask the seller a question
+            </button>
         </div>
+        <!-- Removed product details table -->
     </div>
 
     <script>
@@ -464,7 +372,6 @@
             const sortBySelect = document.getElementById('sort-by');
             const productGrid = document.getElementById('product-grid');
             const searchInput = document.getElementById('search-results');
-            const conditionFilterRadios = document.querySelectorAll('input[name="condition-filter"]');
 
             // RAM Filter elements
             const ramFilterEnableCheckbox = document.getElementById('ram-filter-enable');
@@ -472,6 +379,15 @@
             const ramSlider = document.getElementById('ram-slider');
             const selectedRamValueSpan = document.getElementById('selected-ram-value');
             const ramOptions = [4, 6, 8, 16, 32]; // RAM values in GB
+
+            // Price Filter elements
+            const priceFilterEnableCheckbox = document.getElementById('price-filter-enable');
+            const priceSliderContainer = document.getElementById('price-slider-container');
+            const priceSlider = document.getElementById('price-slider');
+            const selectedPriceValueSpan = document.getElementById('selected-price-value');
+            // Define price ranges for the slider. The last value is a high upper bound.
+            const priceOptions = [4000, 6000, 8000, 10000]; // Updated price options
+            priceSlider.max = priceOptions.length - 1; // Update max attribute of slider
 
             // Store all product cards in their initial order
             const initialProductCards = Array.from(document.querySelectorAll('.product-card'));
@@ -483,41 +399,11 @@
                 console.log(`Displayed ${productsToDisplay.length} products.`); // Diagnostic log
             }
 
-            // Function to update filter counts (e.g., for conditions)
-            function updateRefineCounts() {
-                let newCount = 0;
-                let secondhandCount = 0;
-                let refurbishedCount = 0;
-                const allCount = initialProductCards.length;
-
-                initialProductCards.forEach(card => {
-                    const condition = card.dataset.condition;
-                    if (condition === 'New') {
-                        newCount++;
-                    } else if (condition === 'Secondhand') {
-                        secondhandCount++;
-                    } else if (condition === 'Refurbished') {
-                        refurbishedCount++;
-                    }
-                });
-
-                document.getElementById('count-all').innerText = `(${allCount})`;
-                document.getElementById('count-new').innerText = `(${newCount})`;
-                document.getElementById('count-secondhand').innerText = `(${secondhandCount})`;
-                document.getElementById('count-refurbished').innerText = `(${refurbishedCount})`;
-            }
-
             // Main function to apply all filters, search, and sort
             function applyFiltersSortAndSearch() {
                 let filteredProducts = [...initialProductCards]; // Start with all products
 
-                // 1. Apply Condition Filter
-                const selectedCondition = document.querySelector('input[name="condition-filter"]:checked').value;
-                if (selectedCondition !== 'all') {
-                    filteredProducts = filteredProducts.filter(card => card.dataset.condition === selectedCondition);
-                }
-
-                // 2. Apply Search Filter
+                // 1. Apply Search Filter
                 const searchTerm = searchInput.value.toLowerCase();
                 if (searchTerm) {
                     filteredProducts = filteredProducts.filter(card => {
@@ -527,7 +413,7 @@
                     });
                 }
 
-                // 3. Apply RAM Filter (if enabled)
+                // 2. Apply RAM Filter (if enabled)
                 if (ramFilterEnableCheckbox.checked) {
                     const minRam = ramOptions[parseInt(ramSlider.value)];
                     filteredProducts = filteredProducts.filter(card => {
@@ -535,6 +421,22 @@
                         return cardRam >= minRam;
                     });
                 }
+
+                // 3. Apply Price Filter (if enabled)
+                if (priceFilterEnableCheckbox.checked) {
+                    const maxPriceIndex = parseInt(priceSlider.value);
+                    const maxPrice = priceOptions[maxPriceIndex];
+
+                    filteredProducts = filteredProducts.filter(card => {
+                        const cardPrice = parseFloat(card.dataset.price);
+                        // If the slider is at the highest point, show all products above that threshold
+                        if (maxPriceIndex === priceOptions.length - 1) {
+                            return cardPrice >= maxPrice; // Show all products equal to or above R10,000
+                        }
+                        return cardPrice <= maxPrice;
+                    });
+                }
+
 
                 // 4. Apply Sorting
                 const sortBy = sortBySelect.value;
@@ -550,9 +452,6 @@
 
             // Event Listeners
             sortBySelect.addEventListener('change', applyFiltersSortAndSearch);
-            conditionFilterRadios.forEach(radio => {
-                radio.addEventListener('change', applyFiltersSortAndSearch);
-            });
             searchInput.addEventListener('input', applyFiltersSortAndSearch); // Trigger on search input
 
             // RAM filter event listeners
@@ -566,10 +465,36 @@
                 applyFiltersSortAndSearch();
             });
 
+            // Price filter event listeners
+            priceFilterEnableCheckbox.addEventListener('change', () => {
+                priceSliderContainer.classList.toggle('hidden', !priceFilterEnableCheckbox.checked);
+                applyFiltersSortAndSearch();
+            });
+
+            priceSlider.addEventListener('input', () => {
+                const selectedPriceIndex = parseInt(priceSlider.value);
+                let displayedPriceText;
+                if (selectedPriceIndex === priceOptions.length - 1) {
+                    displayedPriceText = `R${priceOptions[selectedPriceIndex].toLocaleString()}K+`;
+                } else {
+                    displayedPriceText = `R${priceOptions[selectedPriceIndex].toLocaleString().replace('000', 'K')}`;
+                }
+                selectedPriceValueSpan.innerText = displayedPriceText;
+                applyFiltersSortAndSearch();
+            });
+
             // Initial calls to populate counts and apply default filters/sort
-            updateRefineCounts();
-            applyFiltersSortAndSearch(); // Initial display
+            // Note: applyFiltersSortAndSearch is not called here because we want to show product-detail-content initially
             selectedRamValueSpan.innerText = `${ramOptions[parseInt(ramSlider.value)]}GB`; // Set initial slider value display
+            // Set initial price slider value display using the new format
+            let initialPriceIndex = parseInt(priceSlider.value);
+            let initialDisplayedPriceText;
+            if (initialPriceIndex === priceOptions.length - 1) {
+                initialDisplayedPriceText = `R${priceOptions[initialPriceIndex].toLocaleString()}K+`;
+            } else {
+                initialDisplayedPriceText = `R${priceOptions[initialPriceIndex].toLocaleString().replace('000', 'K')}`;
+            }
+            selectedPriceValueSpan.innerText = initialDisplayedPriceText;
         });
     </script>
 </body>
